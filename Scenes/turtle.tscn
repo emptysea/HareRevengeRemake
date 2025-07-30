@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfccrismwjnn0"]
+
+[ext_resource type="Texture2D" uid="uid://dyeya26pl5gjj" path="res://Sprites/turtle_spriteFinal.png" id="1_2kqlg"]
+[ext_resource type="Script" uid="uid://7bsqrcr2sk5h" path="res://Scripts/turtle.gd" id="1_orlk4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfmpr"]
+size = Vector2(56, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhod5"]
+atlas = ExtResource("1_2kqlg")
+region = Rect2(0, 0, 73, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx571"]
+atlas = ExtResource("1_2kqlg")
+region = Rect2(73, 0, 73, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yulik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhod5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx571")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 3.0
+}]
+
+[node name="Turtle" type="CharacterBody2D"]
+script = ExtResource("1_orlk4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 5)
+shape = SubResource("RectangleShape2D_qfmpr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yulik")
+animation = &"Walk"
+frame = 1
+frame_progress = 0.0631674
