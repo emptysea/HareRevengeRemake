@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 350.0
 const JUMP_VELOCITY = -400.0
-var movingRight = false
+@export var movingRight = false
 
 
 func _physics_process(delta: float) -> void:
@@ -13,7 +13,9 @@ func _physics_process(delta: float) -> void:
 		
 	if movingRight:
 		velocity.x = 1 * SPEED
+		
 	elif not movingRight:
 		velocity.x = -1 * SPEED
-
+		$AnimatedSprite2D.flip_h = true
+	$AnimatedSprite2D.play()
 	move_and_slide()

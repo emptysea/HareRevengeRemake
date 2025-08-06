@@ -19,7 +19,7 @@ position = Vector2(141, -31)
 [node name="Camera2D" type="Camera2D" parent="Player/Turtle"]
 limit_left = 0
 limit_top = -500
-limit_right = 3904
+limit_right = 3804
 limit_bottom = 192
 position_smoothing_enabled = true
 
@@ -34,5 +34,13 @@ visible = false
 visible = false
 
 [node name="Enemies" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(1, 0)
 
 [node name="Fox" parent="Enemies" instance=ExtResource("6_7lihs")]
+visible = false
+
+[node name="FoxTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FoxTimer" to="." method="_on_fox_timer_timeout"]

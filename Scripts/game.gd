@@ -2,12 +2,14 @@ extends Node2D
 
 @onready var levels = [1,2,3]
 @onready var curLevel = 1
+var fox = null
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var node2 = $"Levels/Level 2"
 	var node3 = $"Levels/Level 3"
+	$FoxTimer.start(2)
 	
 	disable_collisions_in_node(node2)
 	disable_collisions_in_node(node3)
@@ -87,3 +89,15 @@ func enable_collisions_in_node(root: Node):
 func next_level():
 	print ("Triggered!")
 	changeLevels();
+
+
+func _on_fox_timer_timeout() -> void:
+	#Create our first fox
+	#TODO: Programmatically find the bounds of the level, in case we want to change resolutions.
+	var enemyLocation = $Player/Turtle/Camera2D.global_position + Vector2(1000,0)
+	 
+	$Enemies/Fox.visible = true
+	$Enemies/Fox.position = (enemyLocation)
+	print ("Spawned at ")
+	print (enemyLocation)
+	pass # Replace with function body.
