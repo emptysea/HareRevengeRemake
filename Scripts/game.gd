@@ -94,7 +94,7 @@ func next_level():
 func _on_fox_timer_timeout() -> void:
 	#Create our first fox
 	#TODO: Programmatically find the bounds of the level, in case we want to change resolutions.
-	var enemyLocation = $Player/Turtle/Camera2D.global_position + Vector2(1000,0)
+	var enemyLocation = $Player/Turtle/Camera2D.global_position + Vector2(1000,-100)
 	 
 	$Enemies/Fox.visible = true
 	$Enemies/Fox.position = (enemyLocation)

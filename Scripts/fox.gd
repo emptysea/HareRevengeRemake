@@ -19,3 +19,8 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = true
 	$AnimatedSprite2D.play()
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print ("got one!")
+	pass # Replace with function body.
