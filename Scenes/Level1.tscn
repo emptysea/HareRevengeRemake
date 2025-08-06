@@ -38,4 +38,4 @@ tile_set = SubResource("TileSet_q12u6")
 occlusion_enabled = false
 
 [node name="ToNext" parent="." instance=ExtResource("2_joc8x")]
-position = Vector2(1169, -22)
+position = Vector2(3819, -91)

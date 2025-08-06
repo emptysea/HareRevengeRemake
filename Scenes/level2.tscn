@@ -38,4 +38,4 @@ tile_set = SubResource("TileSet_1k4by")
 occlusion_enabled = false
 
 [node name="ToNext" parent="." instance=ExtResource("2_ckivy")]
-position = Vector2(361, -93)
+position = Vector2(3801, -2)

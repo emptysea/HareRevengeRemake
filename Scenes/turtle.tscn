@@ -6,11 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfmpr"]
 size = Vector2(56, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhod5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_orlk4"]
 atlas = ExtResource("1_2kqlg")
 region = Rect2(0, 0, 73, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nx571"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4oac"]
 atlas = ExtResource("1_2kqlg")
 region = Rect2(73, 0, 73, 76)
 
@@ -18,10 +18,10 @@ region = Rect2(73, 0, 73, 76)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dhod5")
+"texture": SubResource("AtlasTexture_orlk4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nx571")
+"texture": SubResource("AtlasTexture_l4oac")
 }],
 "loop": true,
 "name": &"Walk",
@@ -38,5 +38,4 @@ shape = SubResource("RectangleShape2D_qfmpr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yulik")
 animation = &"Walk"
-frame = 1
-frame_progress = 0.0631674
+frame_progress = 0.548119

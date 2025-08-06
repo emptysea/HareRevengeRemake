@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://docgbsetnnxi6"]
+[gd_scene load_steps=7 format=3 uid="uid://docgbsetnnxi6"]
 
 [ext_resource type="Script" uid="uid://din1ixvasd5pc" path="res://Scripts/game.gd" id="1_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="1_gl6un"]
 [ext_resource type="PackedScene" uid="uid://3uhycdt7f3w0" path="res://Scenes/Level1.tscn" id="2_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://bb0duhj603olj" path="res://Scenes/level2.tscn" id="3_kldst"]
 [ext_resource type="PackedScene" uid="uid://h5g7pw1lirah" path="res://Scenes/level3.tscn" id="4_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://cyo55g0fbcj56" path="res://Scenes/fox.tscn" id="6_7lihs"]
 
-[node name="Node2D" type="Node2D"]
+[node name="GameRoot" type="Node2D"]
 script = ExtResource("1_b2bpf")
 
 [node name="Player" type="Node2D" parent="."]
@@ -31,3 +32,7 @@ visible = false
 
 [node name="Level 3" parent="Levels" instance=ExtResource("4_b2bpf")]
 visible = false
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Fox" parent="Enemies" instance=ExtResource("6_7lihs")]

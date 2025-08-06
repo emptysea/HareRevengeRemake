@@ -1,4 +1,5 @@
 extends Node2D
+
 @onready var levels = [1,2,3]
 @onready var curLevel = 1
 
@@ -23,7 +24,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	#Level manager
+	if curLevel == 1:
+		pass
+	elif curLevel == 2:
+		pass
+	elif curLevel == 3:
+		pass
 
 func changeLevels() -> void:
 	var curNode = get_node("Levels/Level 1")

@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyo55g0fbcj56"]
+
+[ext_resource type="Script" uid="uid://dwg881s1ahomg" path="res://Scripts/fox.gd" id="1_e6g21"]
+[ext_resource type="Texture2D" uid="uid://cjfnpixm37rw2" path="res://Sprites/fox_final.png" id="1_fslue"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6g21"]
+atlas = ExtResource("1_fslue")
+region = Rect2(0, 0, 73, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj2lq"]
+atlas = ExtResource("1_fslue")
+region = Rect2(73, 0, 73, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yd0gq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6g21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj2lq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1jln"]
+size = Vector2(65, 47)
+
+[node name="Fox" type="CharacterBody2D"]
+script = ExtResource("1_e6g21")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yd0gq")
+frame = 1
+frame_progress = 0.356489
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 7.5)
+shape = SubResource("RectangleShape2D_l1jln")
