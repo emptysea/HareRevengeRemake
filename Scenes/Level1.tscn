@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://3uhycdt7f3w0"]
+[gd_scene load_steps=8 format=4 uid="uid://3uhycdt7f3w0"]
 
 [ext_resource type="Texture2D" uid="uid://ow5l2r6hbcb5" path="res://Sprites/MyTiles.bmp" id="1_2llne"]
+[ext_resource type="Script" uid="uid://brcso07gxolwf" path="res://Scripts/level_1.gd" id="1_slnnj"]
 [ext_resource type="PackedScene" uid="uid://dn6tkqi84li7p" path="res://Scenes/endpoint.tscn" id="2_joc8x"]
+[ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="3_jghel"]
+[ext_resource type="PackedScene" uid="uid://cyo55g0fbcj56" path="res://Scenes/fox.tscn" id="4_slnnj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2llne"]
 texture = ExtResource("1_2llne")
@@ -31,6 +34,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_2llne")
 
 [node name="Level 1" type="Node2D"]
+script = ExtResource("1_slnnj")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(3, 0)
@@ -39,4 +43,26 @@ tile_set = SubResource("TileSet_q12u6")
 occlusion_enabled = false
 
 [node name="ToNext" parent="." instance=ExtResource("2_joc8x")]
-position = Vector2(3819, -91)
+position = Vector2(3814, -90)
+scale = Vector2(1.23851, 1.14204)
+collision_mask = 2
+
+[node name="Turtle" parent="." instance=ExtResource("3_jghel")]
+position = Vector2(164, -25)
+
+[node name="Camera2D" type="Camera2D" parent="Turtle"]
+limit_left = 0
+limit_top = -500
+limit_right = 3804
+limit_bottom = 192
+position_smoothing_enabled = true
+
+[node name="Fox" parent="." instance=ExtResource("4_slnnj")]
+position = Vector2(1316, 231)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Fox"]
+
+[node name="FoxTimer" type="Timer" parent="."]
+
+[connection signal="screen_exited" from="Fox/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="FoxTimer" to="." method="_on_fox_timer_timeout"]

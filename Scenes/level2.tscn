@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://bb0duhj603olj"]
+[gd_scene load_steps=6 format=4 uid="uid://bb0duhj603olj"]
 
 [ext_resource type="Texture2D" uid="uid://ow5l2r6hbcb5" path="res://Sprites/MyTiles.bmp" id="1_cmmbj"]
 [ext_resource type="PackedScene" uid="uid://dn6tkqi84li7p" path="res://Scenes/endpoint.tscn" id="2_ckivy"]
+[ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="3_1k4by"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ckivy"]
 texture = ExtResource("1_cmmbj")
@@ -38,4 +39,16 @@ tile_set = SubResource("TileSet_1k4by")
 occlusion_enabled = false
 
 [node name="ToNext" parent="." instance=ExtResource("2_ckivy")]
-position = Vector2(3801, -2)
+position = Vector2(3800, 85)
+scale = Vector2(1.69936, 1)
+collision_mask = 2
+
+[node name="Turtle" parent="." instance=ExtResource("3_1k4by")]
+position = Vector2(36, -104)
+
+[node name="Camera2D" type="Camera2D" parent="Turtle"]
+limit_left = 0
+limit_top = -500
+limit_right = 3804
+limit_bottom = 192
+position_smoothing_enabled = true

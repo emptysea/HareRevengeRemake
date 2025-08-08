@@ -1,46 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://docgbsetnnxi6"]
+[gd_scene load_steps=2 format=3 uid="uid://docgbsetnnxi6"]
 
 [ext_resource type="Script" uid="uid://din1ixvasd5pc" path="res://Scripts/game.gd" id="1_b2bpf"]
-[ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="1_gl6un"]
-[ext_resource type="PackedScene" uid="uid://3uhycdt7f3w0" path="res://Scenes/Level1.tscn" id="2_j5yw3"]
-[ext_resource type="PackedScene" uid="uid://bb0duhj603olj" path="res://Scenes/level2.tscn" id="3_kldst"]
-[ext_resource type="PackedScene" uid="uid://h5g7pw1lirah" path="res://Scenes/level3.tscn" id="4_b2bpf"]
-[ext_resource type="PackedScene" uid="uid://cyo55g0fbcj56" path="res://Scenes/fox.tscn" id="6_7lihs"]
 
 [node name="GameRoot" type="Node2D"]
 script = ExtResource("1_b2bpf")
-
-[node name="Player" type="Node2D" parent="."]
-
-[node name="Turtle" parent="Player" instance=ExtResource("1_gl6un")]
-z_index = 1
-position = Vector2(141, -31)
-
-[node name="Camera2D" type="Camera2D" parent="Player/Turtle"]
-limit_left = 0
-limit_top = -500
-limit_right = 3804
-limit_bottom = 192
-position_smoothing_enabled = true
-
-[node name="Levels" type="Node2D" parent="."]
-
-[node name="Level 1" parent="Levels" instance=ExtResource("2_j5yw3")]
-
-[node name="Level 2" parent="Levels" instance=ExtResource("3_kldst")]
-visible = false
-
-[node name="Level 3" parent="Levels" instance=ExtResource("4_b2bpf")]
-visible = false
-
-[node name="Enemies" type="Node2D" parent="."]
-z_index = -1
-position = Vector2(1, 0)
-
-[node name="Fox" parent="Enemies" instance=ExtResource("6_7lihs")]
-visible = false
-
-[node name="FoxTimer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="FoxTimer" to="." method="_on_fox_timer_timeout"]

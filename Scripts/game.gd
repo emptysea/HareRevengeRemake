@@ -2,27 +2,17 @@ extends Node2D
 
 @onready var levels = [1,2,3]
 @onready var curLevel = 1
-var fox = null
+var cur_level_instance = ""
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var node2 = $"Levels/Level 2"
-	var node3 = $"Levels/Level 3"
-	$FoxTimer.start(2)
+func _ready() -> void:	
+	var level1 = load("res://Scenes/Level1.tscn")
+	cur_level_instance = level1.instantiate()
+	var nextLevel = cur_level_instance.get_node("ToNext")
 	
-	disable_collisions_in_node(node2)
-	disable_collisions_in_node(node3)
-	
-	node2.process_mode = Node.PROCESS_MODE_DISABLED
-	node2.visible = false
-	node3.process_mode = Node.PROCESS_MODE_DISABLED
-	node3.visible = false
-	
-	$"Levels/Level 1/ToNext".connect("next_level",next_level)
-	$"Levels/Level 2/ToNext".connect("next_level",next_level)
-	
-	
+	nextLevel.connect("next_level",next_level)
+	add_child(cur_level_instance)	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -35,35 +25,31 @@ func _process(delta: float) -> void:
 		pass
 
 func changeLevels() -> void:
-	var curNode = get_node("Levels/Level 1")
-	var nextNode = get_node("Levels/Level 2")
-	var playerX = 141
-	var playerY = -31
+	print ("Changing to next level...")
+	var nextLevel = ""
+	var nextLevel_inst = ""
+	var ToNextEP = ""
 	
 	if curLevel == 1:
 		curLevel = 2
-		curNode = get_node("Levels/Level 1")
-		nextNode = get_node("Levels/Level 2")
-		playerX = 70
-		playerY = -150
+		nextLevel = load("res://Scenes/level2.tscn")
+		cur_level_instance.queue_free()
+		nextLevel_inst = nextLevel.instantiate()
+		ToNextEP = nextLevel_inst.get_node("ToNext")
+		ToNextEP.connect("next_level",next_level)
+		
+		
 	elif curLevel == 2:
 		curLevel = 3
-		curNode = get_node("Levels/Level 2")
-		nextNode = get_node("Levels/Level 3")
-		playerX = 70
-		playerY = -490
-	var vector = Vector2(playerX, playerY)	
-	var homeVector = Vector2(0,0)
+		nextLevel = load("res://Scenes/level3.tscn")
+		cur_level_instance.queue_free()
+		nextLevel_inst = nextLevel.instantiate()
+		
 	
-	$Player/Turtle.position = (vector)
-	$Player/Turtle/Camera2D.position = homeVector
-	curNode.visible = false
-	curNode.process_mode =Node.PROCESS_MODE_DISABLED
-	disable_collisions_in_node(curNode)
+	cur_level_instance = nextLevel_inst
+	add_child(nextLevel_inst)
 	
-	nextNode.visible = true
-	nextNode.process_mode = Node.PROCESS_MODE_INHERIT
-	enable_collisions_in_node(nextNode)
+	
 
 # Disable all CollisionShape2D nodes inside the instanced scene
 func disable_collisions_in_node(root: Node):
@@ -90,14 +76,4 @@ func next_level():
 	print ("Triggered!")
 	changeLevels();
 
-
-func _on_fox_timer_timeout() -> void:
-	#Create our first fox
-	#TODO: Programmatically find the bounds of the level, in case we want to change resolutions.
-	var enemyLocation = $Player/Turtle/Camera2D.global_position + Vector2(1000,-100)
-	 
-	$Enemies/Fox.visible = true
-	$Enemies/Fox.position = (enemyLocation)
-	print ("Spawned at ")
-	print (enemyLocation)
 	pass # Replace with function body.

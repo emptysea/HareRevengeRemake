@@ -14,7 +14,8 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Turtle":
+		print ("Next level!")
 		emit_signal("next_level")
 	else:
-		print("No transition!")
+		print(body.name)
 	pass # Replace with function body.
