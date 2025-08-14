@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dn6tkqi84li7p" path="res://Scenes/endpoint.tscn" id="2_joc8x"]
 [ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="3_jghel"]
 [ext_resource type="PackedScene" uid="uid://cyo55g0fbcj56" path="res://Scenes/fox.tscn" id="4_slnnj"]
+[ext_resource type="PackedScene" uid="uid://baa6l58h4fhvu" path="res://Scenes/start_world_border.tscn" id="6_t3or0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2llne"]
 texture = ExtResource("1_2llne")
@@ -33,10 +34,6 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_2llne")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_slnnj"]
-normal = Vector2(-1, 0)
-distance = -103.0
-
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_slnnj")
 
@@ -53,6 +50,7 @@ collision_mask = 2
 
 [node name="Turtle" parent="." instance=ExtResource("3_jghel")]
 position = Vector2(164, -25)
+collision_mask = 9
 
 [node name="Camera2D" type="Camera2D" parent="Turtle"]
 limit_left = 0
@@ -68,14 +66,9 @@ position = Vector2(1316, 231)
 
 [node name="FoxTimer" type="Timer" parent="."]
 
-[node name="WorldBorder" type="StaticBody2D" parent="."]
-position = Vector2(3685, -274)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(55, -1)
-shape = SubResource("WorldBoundaryShape2D_slnnj")
+[node name="StartWorldBorder" parent="." instance=ExtResource("6_t3or0")]
+collision_layer = 8
+collision_mask = 2
 
 [connection signal="screen_exited" from="Fox/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="FoxTimer" to="." method="_on_fox_timer_timeout"]
