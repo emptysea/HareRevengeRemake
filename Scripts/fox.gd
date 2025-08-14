@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
 
-const SPEED = 350.0
+const SPEED = 325.0
 const JUMP_VELOCITY = -400.0
 @export var movingRight = false
 @export var stillLoading = true
+
+func switch_direction() -> void:
+	movingRight = not movingRight
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -15,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	if not stillLoading:	
 		if movingRight:
 			velocity.x = 1 * SPEED
+			$AnimatedSprite2D.flip_h = false
 		
 		elif not movingRight:
 			velocity.x = -1 * SPEED

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://bb0duhj603olj"]
+[gd_scene load_steps=7 format=4 uid="uid://bb0duhj603olj"]
 
 [ext_resource type="Texture2D" uid="uid://ow5l2r6hbcb5" path="res://Sprites/MyTiles.bmp" id="1_cmmbj"]
 [ext_resource type="PackedScene" uid="uid://dn6tkqi84li7p" path="res://Scenes/endpoint.tscn" id="2_ckivy"]
@@ -30,6 +30,10 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_ckivy")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1k4by"]
+normal = Vector2(-1, 0)
+distance = -103.0
+
 [node name="Level 2" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -44,7 +48,7 @@ scale = Vector2(1.69936, 1)
 collision_mask = 2
 
 [node name="Turtle" parent="." instance=ExtResource("3_1k4by")]
-position = Vector2(36, -104)
+position = Vector2(36, -102)
 
 [node name="Camera2D" type="Camera2D" parent="Turtle"]
 limit_left = 0
@@ -52,3 +56,12 @@ limit_top = -500
 limit_right = 3804
 limit_bottom = 192
 position_smoothing_enabled = true
+
+[node name="WorldBorder" type="StaticBody2D" parent="."]
+position = Vector2(3684, -275)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(55, -1)
+shape = SubResource("WorldBoundaryShape2D_1k4by")

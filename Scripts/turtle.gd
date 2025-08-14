@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -420.0
+const SPEED = 200.0
+const JUMP_VELOCITY = -530.0
 @export var StillLoading: bool
 
 
