@@ -12,13 +12,14 @@ def convert (target_color, data):
 	return data
 		
 # Load your image
-img = Image.open("turtle_sprite.png").convert("RGBA")
+img = Image.open("life_sprite.png").convert("RGBA")
 
 # Convert to NumPy array
 data = np.array(img)
 
 # Target color: RGB = (12, 12, 12)
 target_colors = {
+	(0x91, 0x53, 0x19),
 	(0x12, 0x11, 0x0c),
 	(0x18, 0x0e, 0x0c),
 	(0x0a, 0x0c, 0x07),

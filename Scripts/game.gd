@@ -2,17 +2,18 @@ extends Node2D
 
 @onready var levels = [1,2,3]
 @onready var curLevel = 1
+@onready var health = 3
 var cur_level_instance = ""
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
+func _ready() -> void:
 	var level1 = load("res://Scenes/Level1.tscn")
 	cur_level_instance = level1.instantiate()
 	var nextLevel = cur_level_instance.get_node("ToNext")
 	
 	nextLevel.connect("next_level",next_level)
-	add_child(cur_level_instance)	
+	add_child(cur_level_instance)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
