@@ -39,5 +39,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	$AudioStreamPlayer2D.play()
 	print ("Just hit a " + str(body)) # Replace with function body.
 	emit_signal("took_damage",1)
