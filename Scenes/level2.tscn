@@ -57,7 +57,7 @@ limit_bottom = 192
 position_smoothing_enabled = true
 
 [node name="EndWorldBorder" parent="." instance=ExtResource("4_onqnr")]
-position = Vector2(3835, 0)
+position = Vector2(3844, -3)
 collision_layer = 8
 collision_mask = 2
 

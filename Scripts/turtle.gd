@@ -5,6 +5,8 @@ const SPEED = 200.0
 const JUMP_VELOCITY = -530.0
 @export var StillLoading: bool
 
+signal took_damage(damage_amount)
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -34,3 +36,8 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.set_frame_and_progress(0,0)
 
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print ("Just hit a " + str(body)) # Replace with function body.
+	emit_signal("took_damage",1)

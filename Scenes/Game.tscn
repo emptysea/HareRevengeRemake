@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://docgbsetnnxi6"]
+[gd_scene load_steps=3 format=3 uid="uid://docgbsetnnxi6"]
 
 [ext_resource type="Script" uid="uid://din1ixvasd5pc" path="res://Scripts/game.gd" id="1_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://cbajimkm1yjdm" path="res://Scenes/Life.tscn" id="2_gl6un"]
 
 [node name="GameRoot" type="Node2D"]
 script = ExtResource("1_b2bpf")
+
+[node name="Life" parent="." instance=ExtResource("2_gl6un")]
+
+[connection signal="game_over" from="Life" to="." method="_on_life_game_over"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbajimkm1yjdm"]
+
+[ext_resource type="Texture2D" uid="uid://dvt28odmo6s6" path="res://Sprites/life.png" id="1_452e1"]
+[ext_resource type="Script" uid="uid://b5efdnrxtp1ig" path="res://Scripts/life.gd" id="1_dhdol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4aiu"]
+atlas = ExtResource("1_452e1")
+region = Rect2(0, 0, 73, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgxw8"]
+atlas = ExtResource("1_452e1")
+region = Rect2(74, 0, 73, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rycqq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4aiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgxw8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Life" type="Node"]
+script = ExtResource("1_dhdol")
+
+[node name="Heart1" type="CanvasLayer" parent="."]
+offset = Vector2(50, 50)
+transform = Transform2D(1, 0, 0, 1, 50, 50)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Heart1"]
+sprite_frames = SubResource("SpriteFrames_rycqq")
+frame_progress = 0.856213
+
+[node name="Heart2" type="CanvasLayer" parent="."]
+offset = Vector2(50, 125)
+transform = Transform2D(1, 0, 0, 1, 50, 125)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Heart2"]
+sprite_frames = SubResource("SpriteFrames_rycqq")
+frame_progress = 0.856213
+
+[node name="Heart3" type="CanvasLayer" parent="."]
+offset = Vector2(50, 200)
+transform = Transform2D(1, 0, 0, 1, 50, 200)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Heart3"]
+sprite_frames = SubResource("SpriteFrames_rycqq")
+frame_progress = 0.856213

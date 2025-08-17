@@ -1,7 +1,7 @@
 extends Node2D
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
+func _ready() -> void:
 	$FoxTimer.start(2)
 	pass # Replace with function body.
 
@@ -44,3 +44,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	$Fox.visible = false
 	$Fox.stillLoading = true
 	$FoxTimer.start(2)
+	
