@@ -12,9 +12,11 @@ func _ready() -> void:
 	cur_level_instance = level1.instantiate()
 	var nextLevel = cur_level_instance.get_node("ToNext")
 	var player = cur_level_instance.get_node("Turtle")
+	var killzone = cur_level_instance.get_node("KillZone")
 	
 	nextLevel.connect("next_level",next_level)
 	player.connect("took_damage", took_damage)
+	killzone.connect("kill_player", took_damage)
 	add_child(cur_level_instance)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,6 +42,8 @@ func changeLevels() -> void:
 		nextLevel_inst = nextLevel.instantiate()
 		ToNextEP = nextLevel_inst.get_node("ToNext")
 		ToNextEP.connect("next_level",next_level)
+		var killzone = nextLevel_inst.get_node("KillZone")
+		killzone.connect("kill_player", took_damage)
 
 
 	elif curLevel == 2:
@@ -60,7 +64,7 @@ func next_level():
 
 func took_damage(damage: int) -> void:
 	print ("Damage to take = " + str(damage))
-	$Life.take_damage(1)
+	$Life.take_damage(damage)
 	pass
 
 

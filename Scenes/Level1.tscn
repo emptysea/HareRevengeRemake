@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://3uhycdt7f3w0"]
+[gd_scene load_steps=10 format=4 uid="uid://3uhycdt7f3w0"]
 
 [ext_resource type="Texture2D" uid="uid://ow5l2r6hbcb5" path="res://Sprites/MyTiles.bmp" id="1_2llne"]
 [ext_resource type="Script" uid="uid://brcso07gxolwf" path="res://Scripts/level_1.gd" id="1_slnnj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="3_jghel"]
 [ext_resource type="PackedScene" uid="uid://cyo55g0fbcj56" path="res://Scenes/fox.tscn" id="4_slnnj"]
 [ext_resource type="PackedScene" uid="uid://baa6l58h4fhvu" path="res://Scenes/start_world_border.tscn" id="6_t3or0"]
+[ext_resource type="PackedScene" uid="uid://b8jsvonmyowh7" path="res://Scenes/kill_zone.tscn" id="7_ysn8j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2llne"]
 texture = ExtResource("1_2llne")
@@ -70,6 +71,10 @@ position = Vector2(1316, 231)
 [node name="StartWorldBorder" parent="." instance=ExtResource("6_t3or0")]
 collision_layer = 8
 collision_mask = 2
+
+[node name="KillZone" parent="." instance=ExtResource("7_ysn8j")]
+position = Vector2(1338, 214)
+collision_mask = 10
 
 [connection signal="screen_exited" from="Fox/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="FoxTimer" to="." method="_on_fox_timer_timeout"]
