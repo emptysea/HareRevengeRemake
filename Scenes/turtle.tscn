@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfccrismwjnn0"]
+[gd_scene load_steps=10 format=3 uid="uid://dfccrismwjnn0"]
 
 [ext_resource type="Texture2D" uid="uid://dyeya26pl5gjj" path="res://Sprites/turtle_spriteFinal.png" id="1_2kqlg"]
 [ext_resource type="Script" uid="uid://7bsqrcr2sk5h" path="res://Scripts/turtle.gd" id="1_orlk4"]
 [ext_resource type="AudioStream" uid="uid://bxryb61l8c61u" path="res://Sounds/turtlehit.wav" id="3_l4oac"]
+[ext_resource type="AudioStream" uid="uid://c0mrape45rqm4" path="res://Sounds/jump.wav" id="4_n4au1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfmpr"]
 size = Vector2(56, 36)
@@ -53,7 +54,10 @@ collision_mask = 4
 position = Vector2(-2, 5)
 shape = SubResource("RectangleShape2D_orlk4")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_l4oac")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n4au1")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

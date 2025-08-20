@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		$Jump.play()
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -39,6 +40,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	$AudioStreamPlayer2D.play()
+	$Hurt.play()
 	print ("Just hit a " + str(body)) # Replace with function body.
 	emit_signal("took_damage",1)
