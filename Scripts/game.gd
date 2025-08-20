@@ -54,7 +54,7 @@ func changeLevels() -> void:
 	var player = nextLevel_inst.get_node("Turtle")
 	player.connect("took_damage", took_damage)
 	cur_level_instance = nextLevel_inst
-	add_child(nextLevel_inst)
+	call_deferred("add_child",nextLevel_inst)
 
 func next_level():
 	print ("Triggered!")
@@ -69,6 +69,8 @@ func took_damage(damage: int) -> void:
 
 
 func _on_life_game_over() -> void:
-	#Restart the game.
-	print (str(get_tree().get_current_scene().name))
-	get_tree().reload_current_scene()
+	#Load our game over scene, and quit the current one.
+	$Life.queue_free()
+	cur_level_instance.queue_free()
+	var game_over_scene = load("res://Scenes/GameOver.tscn").instantiate()
+	add_child(game_over_scene)
