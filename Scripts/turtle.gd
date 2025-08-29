@@ -3,7 +3,12 @@ extends CharacterBody2D
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -530.0
+enum FACING {LEFT, RIGHT}
+
 @export var StillLoading: bool
+
+@onready var water = load("res://Scenes/water.tscn")
+@onready var facingDir = FACING.RIGHT
 
 signal took_damage(damage_amount)
 
@@ -17,9 +22,21 @@ func _physics_process(delta: float) -> void:
 		StillLoading = false
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		$Jump.play()
 		velocity.y = JUMP_VELOCITY
+	elif Input.is_action_just_pressed("Shoot") and is_on_floor():
+		var projectile = water.instantiate()
+		projectile.spawnPos = global_position
+		if facingDir == FACING.RIGHT:
+			projectile.spawnPos = global_position
+			projectile.animationDir = false
+		else:
+			var somepos = Vector2(70*3,0)
+			projectile.spawnPos = (global_position - somepos)
+			projectile.animationDir = true
+		
+		call_deferred("add_child",projectile)
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -27,8 +44,10 @@ func _physics_process(delta: float) -> void:
 	if direction and not StillLoading:
 		velocity.x = direction * SPEED
 		if velocity.x > 0:
+			facingDir = FACING.RIGHT
 			$AnimatedSprite2D.flip_h = false
 		elif velocity.x < 0:
+			facingDir = FACING.LEFT
 			$AnimatedSprite2D.flip_h = true
 		$AnimatedSprite2D.play()
 	else:
