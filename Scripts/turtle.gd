@@ -29,12 +29,11 @@ func _physics_process(delta: float) -> void:
 		var projectile = water.instantiate()
 		projectile.spawnPos = global_position
 		if facingDir == FACING.RIGHT:
-			projectile.spawnPos = global_position
-			projectile.animationDir = false
+			projectile.spawnDir = 0
 		else:
-			var somepos = Vector2(70*3,0)
-			projectile.spawnPos = (global_position - somepos)
-			projectile.animationDir = true
+			var yAdjust = Vector2(0,26)
+			projectile.spawnPos = global_position + yAdjust
+			projectile.spawnDir = deg_to_rad(180)
 		
 		call_deferred("add_child",projectile)
 
@@ -59,6 +58,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	$Hurt.play()
-	print ("Just hit a " + str(body)) # Replace with function body.
-	emit_signal("took_damage",1)
+	if body.visible == true:
+		$Hurt.play()
+		print ("Just hit a " + str(body)) # Replace with function body.
+		emit_signal("took_damage",1)

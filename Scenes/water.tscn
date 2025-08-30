@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://boj8atj178v2v"]
+[gd_scene load_steps=7 format=3 uid="uid://boj8atj178v2v"]
 
 [ext_resource type="Script" uid="uid://c6paphm8uaqjl" path="res://Scripts/water.gd" id="1_gf5bf"]
 [ext_resource type="Texture2D" uid="uid://c4lb5bfq7gpy3" path="res://Sprites/water.png" id="2_qq3op"]
+[ext_resource type="AudioStream" uid="uid://b4csa3kevseoe" path="res://Sounds/water.wav" id="3_qq3op"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wcun"]
 size = Vector2(161, 55)
@@ -36,6 +37,9 @@ scale = Vector2(0.248485, 0.269231)
 sprite_frames = SubResource("SpriteFrames_qmoj4")
 
 [node name="Expire" type="Timer" parent="."]
+
+[node name="watersound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qq3op")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Expire" to="." method="_on_expire_timeout"]

@@ -6,6 +6,10 @@ const JUMP_VELOCITY = -400.0
 @export var movingRight = false
 @export var stillLoading = true
 
+func _ready() -> void:
+	print(str(collision_layer))
+	print(str(collision_mask))
+
 func switch_direction() -> void:
 	movingRight = not movingRight
 
@@ -26,7 +30,14 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play()
 	move_and_slide()
 
+func damage() -> void:
+	if visible == true:
+		$hurt.play()
+		print ("Fox should be dead!!")
+		visible = false
+		collision_layer = 0
+		collision_mask = 0
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print ("got one!")
+	print ("Hit by " + str(body.name))
 	pass # Replace with function body.

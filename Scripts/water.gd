@@ -8,12 +8,11 @@ func _ready() -> void:
 	global_position = spawnPos
 	global_rotation = spawnDir
 	$AnimatedSprite2D.flip_h = animationDir
-	print ("water spawned")
-	print (global_rotation)
+	$watersound.play()
 	$Expire.start(.1)
 
 func _on_body_entered(body: Node2D) -> void:
-	print (body.name)
+	body.damage()
 
 
 func _on_expire_timeout() -> void:

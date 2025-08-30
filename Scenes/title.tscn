@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceb70qxe55x62"]
+
+[ext_resource type="Script" uid="uid://dw4vclr288w25" path="res://Scripts/title.gd" id="1_fp2oq"]
+[ext_resource type="Texture2D" uid="uid://ducvsma0w8b8t" path="res://Images/intro.jpg" id="1_w31pl"]
+[ext_resource type="AudioStream" uid="uid://37h6pv5hfep0" path="res://Music/intro.mp3" id="2_ekrfg"]
+
+[node name="Title" type="Node"]
+script = ExtResource("1_fp2oq")
+
+[node name="TitleScreen" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="TitleScreen"]
+offset_right = 1152.0
+offset_bottom = 647.0
+texture = ExtResource("1_w31pl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ekrfg")
+autoplay = true

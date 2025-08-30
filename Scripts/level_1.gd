@@ -22,17 +22,19 @@ func _process(delta: float) -> void:
 			$Fox.switch_direction()
 
 func _on_fox_timer_timeout() -> void:
-	#Create our first fox
+	#Create our fox
 	#TODO: Programmatically find the bounds of the level, in case we want to change resolutions.
 	var screensize = get_viewport_rect().size
 	var screencenterX = $Turtle/Camera2D.get_screen_center_position().x	
-	var enemyLocationX = screencenterX + (screensize.x/2) + 64
+	var enemyLocationX = screencenterX + (screensize.x/2) + 32
 	var enemyLocation = Vector2(enemyLocationX,$Turtle/Camera2D.global_position.y - 64)
 	if not $Fox/VisibleOnScreenNotifier2D.is_on_screen():
 		print ("Creating new fox...")
 	 
 		$Fox.position = (enemyLocation)
 		$Fox.visible = true
+		$Fox.collision_layer = 4
+		$Fox.collision_mask = 1
 		print ("Spawned at " + str(enemyLocation))
 		print ("viewport size " + str(get_viewport_rect().size))
 		print ("Turtle at" + str($Turtle.global_position))
@@ -41,7 +43,6 @@ func _on_fox_timer_timeout() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	$Fox.visible = false
 	$Fox.stillLoading = true
 	$FoxTimer.start(2)
 	

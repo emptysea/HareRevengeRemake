@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyo55g0fbcj56"]
+[gd_scene load_steps=9 format=3 uid="uid://cyo55g0fbcj56"]
 
 [ext_resource type="Script" uid="uid://dwg881s1ahomg" path="res://Scripts/fox.gd" id="1_e6g21"]
 [ext_resource type="Texture2D" uid="uid://cjfnpixm37rw2" path="res://Sprites/fox_final.png" id="1_fslue"]
+[ext_resource type="AudioStream" uid="uid://b63s7gkiggdoo" path="res://Sounds/foxdie.wav" id="3_yj2lq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6g21"]
 atlas = ExtResource("1_fslue")
@@ -51,5 +52,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1.5, 10.5)
 shape = SubResource("RectangleShape2D_e6g21")
+
+[node name="hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yj2lq")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
