@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsymcc6ixxf4v"]
+
+[ext_resource type="AudioStream" uid="uid://mohfju5g6i5t" path="res://Music/Bridge.mp3" id="1_ngytg"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_ngytg")
+autoplay = true

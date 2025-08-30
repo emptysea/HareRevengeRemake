@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca38sy2i7bpkc"]
+
+[ext_resource type="Texture2D" uid="uid://bev0ivptufeld" path="res://Images/Level_Intro.jpg" id="1_5unum"]
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_5unum")

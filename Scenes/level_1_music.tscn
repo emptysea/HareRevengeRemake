@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1dwxy8sq1n4l"]
+
+[ext_resource type="AudioStream" uid="uid://ctpp1j4dai7rp" path="res://Music/TurtleTheme.mp3" id="1_4dyn1"]
+
+[node name="Level1_Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_4dyn1")
+autoplay = true

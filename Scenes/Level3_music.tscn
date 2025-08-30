@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://6mihahjdhrhr"]
+
+[ext_resource type="AudioStream" uid="uid://cwtlnoiraax2k" path="res://Music/Rabbit.mp3" id="1_prmut"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_prmut")
+autoplay = true

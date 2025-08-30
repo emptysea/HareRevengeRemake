@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://h5g7pw1lirah"]
+[gd_scene load_steps=7 format=4 uid="uid://h5g7pw1lirah"]
 
 [ext_resource type="Texture2D" uid="uid://ow5l2r6hbcb5" path="res://Sprites/MyTiles.bmp" id="1_6o2xc"]
 [ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="2_petmu"]
 [ext_resource type="PackedScene" uid="uid://baa6l58h4fhvu" path="res://Scenes/start_world_border.tscn" id="3_d77hw"]
 [ext_resource type="PackedScene" uid="uid://df2t7fs2mqkb1" path="res://Scenes/end_world_border.tscn" id="4_jaajx"]
-[ext_resource type="AudioStream" uid="uid://cwtlnoiraax2k" path="res://Music/Rabbit.mp3" id="5_jaajx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_petmu"]
 texture = ExtResource("1_6o2xc")
@@ -57,7 +56,3 @@ position_smoothing_enabled = true
 
 [node name="EndWorldBorder" parent="." instance=ExtResource("4_jaajx")]
 position = Vector2(1152, 0)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_jaajx")
-autoplay = true
