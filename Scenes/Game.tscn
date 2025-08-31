@@ -9,6 +9,7 @@ script = ExtResource("1_b2bpf")
 [node name="Life" parent="." instance=ExtResource("2_gl6un")]
 
 [node name="SplashTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="game_over" from="Life" to="." method="_on_life_game_over"]
 [connection signal="timeout" from="SplashTimer" to="." method="_on_splash_timer_timeout"]

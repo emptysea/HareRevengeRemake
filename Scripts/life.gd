@@ -18,3 +18,13 @@ func take_damage(damage: int) -> void:
 				life = life - 1
 	if life <= 0:
 		emit_signal("game_over")
+
+func hide() -> void:
+	$Heart1.visible = false
+	$Heart2.visible = false
+	$Heart3.visible = false
+
+func show() -> void:
+	$Heart1.visible = true
+	$Heart2.visible = true
+	$Heart3.visible = true
