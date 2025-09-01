@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ondb8gyjdcrq"]
+
+[ext_resource type="AudioStream" uid="uid://c6usjn02aqwal" path="res://Music/GameOver.mp3" id="1_g3pux"]
+
+[node name="gameover_music" type="AudioStreamPlayer"]
+stream = ExtResource("1_g3pux")
+autoplay = true

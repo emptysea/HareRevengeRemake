@@ -17,8 +17,8 @@ var cur_music = ""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	changeSplashScreen(SPLASH.LEVEL1)
-	changeLevelMusic(MUSIC.LEVEL1)
-
+	setMusic(MUSIC.LEVEL1)
+	print_tree_pretty()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -60,7 +60,7 @@ func changeSplashScreen(toSplash : SPLASH) -> void:
 	add_child(splashInstance)
 	$SplashTimer.start(timerPause)
 
-func changeLevels() -> void:
+func transitionToNextLevel() -> void:
 	print ("Changing to next level...")
 	var nextLevel = ""
 	var nextLevel_inst = ""
@@ -71,19 +71,19 @@ func changeLevels() -> void:
 	match curLevel:
 		LEVEL.LEVEL1:
 			call_deferred("changeSplashScreen",SPLASH.LEVEL2)
-			call_deferred("changeLevelMusic",MUSIC.LEVEL2)
+			call_deferred("setMusic",MUSIC.LEVEL2)
 		LEVEL.LEVEL2:
 			call_deferred("changeSplashScreen",SPLASH.LEVEL3)
-			call_deferred("changeLevelMusic",MUSIC.LEVEL3)
+			call_deferred("setMusic",MUSIC.LEVEL3)
 		LEVEL.LEVEL3:
 			call_deferred("changeSplashScreen",SPLASH.END1)
-			call_deferred("changeLevelMusic",MUSIC.ENDING)
+			call_deferred("setMusic",MUSIC.ENDING)
 			pass
 		_:
 			print ("Unknown level state.  Ending game.")
 			queue_free()
 	
-func changeToLevel(toNextLevel: int) -> void:	
+func setLevel(toNextLevel: int) -> void:	
 	var nextLevel = ""
 	var nextLevel_inst = ""
 	var ToNextEP = ""
@@ -96,7 +96,7 @@ func changeToLevel(toNextLevel: int) -> void:
 			var player = nextLevel_inst.get_node("Turtle")
 			var killzone = nextLevel_inst.get_node("KillZone")
 
-			nextLevelPoint.connect("next_level",changeLevels)
+			nextLevelPoint.connect("next_level",transitionToNextLevel)
 			player.connect("took_damage", took_damage)
 			killzone.connect("kill_player", took_damage)
 		LEVEL.LEVEL2:
@@ -105,7 +105,7 @@ func changeToLevel(toNextLevel: int) -> void:
 			cur_level_instance.queue_free()
 			nextLevel_inst = nextLevel.instantiate()
 			ToNextEP = nextLevel_inst.get_node("ToNext")
-			ToNextEP.connect("next_level",changeLevels)
+			ToNextEP.connect("next_level",transitionToNextLevel)
 
 			var killzone = nextLevel_inst.get_node("KillZone")
 			killzone.connect("kill_player", took_damage)
@@ -118,7 +118,7 @@ func changeToLevel(toNextLevel: int) -> void:
 			cur_level_instance.queue_free()
 			nextLevel_inst = nextLevel.instantiate()
 			var rabbit = nextLevel_inst.get_node("Rabbit")
-			rabbit.connect("winner", changeLevels)
+			rabbit.connect("winner", transitionToNextLevel)
 		_:
 			#Probably ending.  Don't set up another level.
 			pass
@@ -129,9 +129,11 @@ func changeToLevel(toNextLevel: int) -> void:
 	cur_level_instance = nextLevel_inst
 	add_child(cur_level_instance)
 
-func changeLevelMusic(toMusic: MUSIC) -> void:
+func setMusic(toMusic: MUSIC) -> void:
 	var newMusic = load("res://Scenes/level_1_music.tscn")
 	match toMusic:
+		MUSIC.GAMEOVER:
+			newMusic = load("res://Scenes/gameover_music.tscn")
 		MUSIC.LEVEL1:
 			newMusic = load("res://Scenes/level_1_music.tscn")
 		MUSIC.LEVEL2:
@@ -155,9 +157,9 @@ func took_damage(damage: int) -> void:
 func _on_splash_timer_timeout() -> void:
 	match curLevel:
 		LEVEL.LEVEL1:
-			changeToLevel(LEVEL.LEVEL2)
+			setLevel(LEVEL.LEVEL2)
 		LEVEL.LEVEL2:
-			changeToLevel(LEVEL.LEVEL3)
+			setLevel(LEVEL.LEVEL3)
 		LEVEL.LEVEL3:
 			#Time to end the game. Use curLevel to keep track of which one we're on.
 			curLevel = LEVEL.END1
@@ -187,14 +189,14 @@ func _on_splash_timer_timeout() -> void:
 			#For now, nothing.
 			pass
 		_:
-			changeToLevel(1)
+			setLevel(1)
 	if curLevel < LEVEL.END1:
 		$Life.show()
 
 func _on_life_game_over() -> void:
 	#Load our game over scene, and quit the current one.
+	setMusic(MUSIC.GAMEOVER)
 	$Life.queue_free()
 	cur_level_instance.queue_free()
-	cur_music.queue_free()
 	var game_over_scene = load("res://Scenes/GameOver.tscn").instantiate()
 	add_child(game_over_scene)
