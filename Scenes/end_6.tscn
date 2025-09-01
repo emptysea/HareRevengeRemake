@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ynyetp2a2x1"]
+
+[ext_resource type="Texture2D" uid="uid://cuu41sus4im83" path="res://Images/Win6.jpg" id="1_atwjb"]
+
+[node name="End6" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_atwjb")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://pqt1c0olj4j6" path="res://Images/Level2_Intro.jpg" id="1_ocp5p"]
 
-[node name="Node" type="Node"]
+[node name="Level2Intro" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
