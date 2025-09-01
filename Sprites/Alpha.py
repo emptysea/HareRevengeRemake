@@ -12,7 +12,7 @@ def convert (target_color, data):
 	return data
 		
 # Load your image
-img = Image.open("bird_sprite.png").convert("RGBA")
+img = Image.open("rabbit_sprite.png").convert("RGBA")
 
 # Convert to NumPy array
 data = np.array(img)
@@ -45,4 +45,4 @@ for color in target_colors:
 img_transparent = Image.fromarray(data)
 
 # Save the result
-img_transparent.save("bird_sprite.png")
+img_transparent.save("rabbit_sprite2.png")

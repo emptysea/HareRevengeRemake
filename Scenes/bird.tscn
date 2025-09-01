@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://d2gi3vj84uti3"]
 
-[ext_resource type="Script" uid="uid://dwg881s1ahomg" path="res://Scripts/fox.gd" id="1_dnvpi"]
+[ext_resource type="Script" uid="uid://dxs02f3lkgnec" path="res://Scripts/bird.gd" id="1_dnvpi"]
 [ext_resource type="Texture2D" uid="uid://b8u006dgdsoby" path="res://Sprites/bird_final.png" id="2_vl8r2"]
 [ext_resource type="AudioStream" uid="uid://de06kpftes4q7" path="res://Sounds/birddie.wav" id="3_rr33m"]
 
