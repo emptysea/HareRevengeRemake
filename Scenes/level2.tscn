@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bb0duhj603olj"]
+[gd_scene load_steps=10 format=4 uid="uid://bb0duhj603olj"]
 
 [ext_resource type="Texture2D" uid="uid://ow5l2r6hbcb5" path="res://Sprites/MyTiles.bmp" id="1_cmmbj"]
 [ext_resource type="PackedScene" uid="uid://dn6tkqi84li7p" path="res://Scenes/endpoint.tscn" id="2_ckivy"]
 [ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="3_1k4by"]
 [ext_resource type="PackedScene" uid="uid://baa6l58h4fhvu" path="res://Scenes/start_world_border.tscn" id="4_dlanv"]
+[ext_resource type="PackedScene" uid="uid://d2gi3vj84uti3" path="res://Scenes/bird.tscn" id="4_lgosu"]
 [ext_resource type="PackedScene" uid="uid://df2t7fs2mqkb1" path="res://Scenes/end_world_border.tscn" id="4_onqnr"]
 [ext_resource type="PackedScene" uid="uid://b8jsvonmyowh7" path="res://Scenes/kill_zone.tscn" id="6_styii"]
 
@@ -56,6 +57,10 @@ limit_top = -500
 limit_right = 3804
 limit_bottom = 192
 position_smoothing_enabled = true
+
+[node name="Bird" parent="." instance=ExtResource("4_lgosu")]
+visible = false
+script = null
 
 [node name="EndWorldBorder" parent="." instance=ExtResource("4_onqnr")]
 position = Vector2(3844, -3)
