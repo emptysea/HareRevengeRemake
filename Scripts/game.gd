@@ -12,8 +12,9 @@ enum SPLASH {LEVEL1,LEVEL2,LEVEL3,TITLE,ENDING,GAMEOVER}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	changeSplashScreen(SPLASH.LEVEL1)
-	changeLevelMusic(MUSIC.LEVEL1)
+	curLevel = 2
+	changeSplashScreen(SPLASH.LEVEL3)
+	changeLevelMusic(MUSIC.LEVEL3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -29,6 +30,10 @@ func changeSplashScreen(toSplash : SPLASH) -> void:
 			splashScreen = load("res://Scenes/level2_intro.tscn")
 		SPLASH.LEVEL3:
 			splashScreen = load("res://Scenes/Level3_intro.tscn")
+		SPLASH.ENDING:
+			splashScreen = load("res://Scenes/level1_intro.tscn")
+		_:
+			splashScreen = load("res://Scenes/level1_intro.tscn")
 
 	$Life.hide()
 	splashInstance = splashScreen.instantiate()
@@ -54,6 +59,9 @@ func changeLevels() -> void:
 		2:
 			call_deferred("changeSplashScreen",SPLASH.LEVEL3)
 			call_deferred("changeLevelMusic",MUSIC.LEVEL3)
+		3:
+			call_deferred("changeSplashScreen", SPLASH.ENDING)
+			call_deferred("changeLevelMusic",MUSIC.ENDING)
 		_:
 			print ("Unknown level state.  Ending game.")
 			queue_free()
@@ -92,6 +100,8 @@ func changeToLevel(toNextLevel: int) -> void:
 			nextLevel = load("res://Scenes/level3.tscn")
 			cur_level_instance.queue_free()
 			nextLevel_inst = nextLevel.instantiate()
+			var rabbit = nextLevel_inst.get_node("Rabbit")
+			rabbit.connect("winner", changeLevels)
 	
 	if is_instance_valid(cur_level_instance):
 		print("Freeing " + cur_level_instance.name + "...")
@@ -108,6 +118,7 @@ func changeLevelMusic(toMusic: MUSIC) -> void:
 			newMusic = load("res://Scenes/Level2_music.tscn")
 		MUSIC.LEVEL3:
 			newMusic = load("res://Scenes/Level3_music.tscn")
+
 	var music_instance = newMusic.instantiate()
 	
 	if is_instance_valid(cur_music):

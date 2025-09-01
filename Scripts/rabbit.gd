@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var rabbit_health = 3
 
+signal winner
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
@@ -30,3 +32,4 @@ func damage():
 	$hurt.play()
 	if rabbit_health <= 0:
 		print ("You win!!")
+		emit_signal("winner")
