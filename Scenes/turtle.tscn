@@ -1,12 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfccrismwjnn0"]
+[gd_scene load_steps=13 format=3 uid="uid://dfccrismwjnn0"]
 
 [ext_resource type="Texture2D" uid="uid://dyeya26pl5gjj" path="res://Sprites/turtle_spriteFinal.png" id="1_2kqlg"]
 [ext_resource type="Script" uid="uid://7bsqrcr2sk5h" path="res://Scripts/turtle.gd" id="1_orlk4"]
+[ext_resource type="Texture2D" uid="uid://4hjj8rt8t011" path="res://Sprites/turtle_hide.png" id="2_lut88"]
 [ext_resource type="AudioStream" uid="uid://bxryb61l8c61u" path="res://Sounds/turtlehit.wav" id="3_l4oac"]
 [ext_resource type="AudioStream" uid="uid://c0mrape45rqm4" path="res://Sounds/jump.wav" id="4_n4au1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfmpr"]
 size = Vector2(56, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wtod"]
+atlas = ExtResource("2_lut88")
+region = Rect2(0, 0, 73, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b677m"]
+atlas = ExtResource("2_lut88")
+region = Rect2(73, 0, 73, 76)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_orlk4"]
 atlas = ExtResource("1_2kqlg")
@@ -18,6 +27,22 @@ region = Rect2(73, 0, 73, 76)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yulik"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wtod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b677m")
+}],
+"loop": false,
+"name": &"Hide",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_orlk4")
@@ -43,8 +68,9 @@ shape = SubResource("RectangleShape2D_qfmpr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yulik")
-animation = &"Walk"
-frame_progress = 0.548119
+animation = &"Hide"
+frame = 1
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

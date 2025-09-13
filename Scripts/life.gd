@@ -16,6 +16,7 @@ func take_damage(damage: int) -> void:
 			3:
 				$Heart1/AnimatedSprite2D.frame = 1
 				life = life - 1
+	print ("Life left:" + str(life))
 	if life <= 0:
 		emit_signal("game_over")
 

@@ -9,9 +9,11 @@ enum FACING {LEFT, RIGHT}
 
 @onready var water = load("res://Scenes/water.tscn")
 @onready var facingDir = FACING.RIGHT
+@onready var is_hiding = false
 
 signal took_damage(damage_amount)
-
+func _ready() -> void:
+	$AnimatedSprite2D.play("Walk")
 
 func _physics_process(delta: float) -> void:
 	
@@ -20,6 +22,11 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	else:
 		StillLoading = false
+		
+	#Implement hiding in shell.
+	if Input.is_action_just_pressed("Hide") and is_on_floor():
+		$AnimatedSprite2D.play("Hide")
+		pass
 
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
@@ -48,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		elif velocity.x < 0:
 			facingDir = FACING.LEFT
 			$AnimatedSprite2D.flip_h = true
-		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.play("Walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		$AnimatedSprite2D.stop()

@@ -16,6 +16,7 @@ var cur_music = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	curLevel = LEVEL.TITLE
 	changeSplashScreen(SPLASH.LEVEL1)
 	setMusic(MUSIC.LEVEL1)
 	print_tree_pretty()
@@ -93,11 +94,9 @@ func setLevel(toNextLevel: int) -> void:
 			nextLevel = load("res://Scenes/Level1.tscn")
 			nextLevel_inst = nextLevel.instantiate()
 			var nextLevelPoint = nextLevel_inst.get_node("ToNext")
-			var player = nextLevel_inst.get_node("Turtle")
 			var killzone = nextLevel_inst.get_node("KillZone")
 
 			nextLevelPoint.connect("next_level",transitionToNextLevel)
-			player.connect("took_damage", took_damage)
 			killzone.connect("kill_player", took_damage)
 		LEVEL.LEVEL2:
 			curLevel = LEVEL.LEVEL2
@@ -110,8 +109,6 @@ func setLevel(toNextLevel: int) -> void:
 			var killzone = nextLevel_inst.get_node("KillZone")
 			killzone.connect("kill_player", took_damage)
 
-			var player = nextLevel_inst.get_node("Turtle")
-			player.connect("took_damage", took_damage)
 		LEVEL.LEVEL3:
 			curLevel = LEVEL.LEVEL3
 			nextLevel = load("res://Scenes/level3.tscn")
@@ -126,6 +123,8 @@ func setLevel(toNextLevel: int) -> void:
 	if is_instance_valid(cur_level_instance):
 		print("Freeing " + cur_level_instance.name + "...")
 		cur_level_instance.queue_free()
+	var player = nextLevel_inst.get_node("Turtle")
+	player.connect("took_damage", took_damage)
 	cur_level_instance = nextLevel_inst
 	add_child(cur_level_instance)
 
