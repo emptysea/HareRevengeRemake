@@ -68,9 +68,7 @@ shape = SubResource("RectangleShape2D_qfmpr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yulik")
-animation = &"Hide"
-frame = 1
-frame_progress = 1.0
+animation = &"Walk"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

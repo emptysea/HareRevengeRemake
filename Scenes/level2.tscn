@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dn6tkqi84li7p" path="res://Scenes/endpoint.tscn" id="2_ckivy"]
 [ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="3_1k4by"]
 [ext_resource type="PackedScene" uid="uid://baa6l58h4fhvu" path="res://Scenes/start_world_border.tscn" id="4_dlanv"]
-[ext_resource type="PackedScene" uid="uid://d2gi3vj84uti3" path="res://Scenes/bird.tscn" id="4_lgosu"]
+[ext_resource type="PackedScene" uid="uid://dnk7lohu1ihys" path="res://Scenes/bird.tscn" id="4_lgosu"]
 [ext_resource type="PackedScene" uid="uid://df2t7fs2mqkb1" path="res://Scenes/end_world_border.tscn" id="4_onqnr"]
 [ext_resource type="PackedScene" uid="uid://b8jsvonmyowh7" path="res://Scenes/kill_zone.tscn" id="6_styii"]
 
