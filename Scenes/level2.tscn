@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://bb0duhj603olj"]
+[gd_scene load_steps=11 format=4 uid="uid://bb0duhj603olj"]
 
 [ext_resource type="Texture2D" uid="uid://ow5l2r6hbcb5" path="res://Sprites/MyTiles.bmp" id="1_cmmbj"]
+[ext_resource type="Script" uid="uid://bcj552umle632" path="res://Scripts/level_2.gd" id="1_mhlpv"]
 [ext_resource type="PackedScene" uid="uid://dn6tkqi84li7p" path="res://Scenes/endpoint.tscn" id="2_ckivy"]
 [ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="3_1k4by"]
 [ext_resource type="PackedScene" uid="uid://baa6l58h4fhvu" path="res://Scenes/start_world_border.tscn" id="4_dlanv"]
@@ -35,6 +36,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_ckivy")
 
 [node name="Level 2" type="Node2D"]
+script = ExtResource("1_mhlpv")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(3, 0)
@@ -60,7 +62,8 @@ position_smoothing_enabled = true
 
 [node name="Bird" parent="." instance=ExtResource("4_lgosu")]
 visible = false
-script = null
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Bird"]
 
 [node name="EndWorldBorder" parent="." instance=ExtResource("4_onqnr")]
 position = Vector2(3844, -3)
@@ -74,3 +77,8 @@ collision_mask = 2
 [node name="KillZone" parent="." instance=ExtResource("6_styii")]
 position = Vector2(1338, 214)
 collision_mask = 10
+
+[node name="BirdTimer" type="Timer" parent="."]
+
+[connection signal="screen_exited" from="Bird/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="BirdTimer" to="." method="_on_bird_timer_timeout"]
