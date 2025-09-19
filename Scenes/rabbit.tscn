@@ -1,28 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://br561j6050d2j"]
+[gd_scene load_steps=9 format=3 uid="uid://b4cbnp03m23aw"]
 
 [ext_resource type="Script" uid="uid://btldf7nnwmh4j" path="res://Scripts/rabbit.gd" id="1_mvytb"]
 [ext_resource type="Texture2D" uid="uid://73fh0hy25tm7" path="res://Sprites/rabbit_sprite.png" id="2_wiawo"]
 [ext_resource type="AudioStream" uid="uid://bnkayuu1bj8wk" path="res://Sounds/rabbithit.wav" id="3_oa2gj"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvytb"]
+atlas = ExtResource("2_wiawo")
+region = Rect2(73, 0, 73, 76)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_sksps"]
 atlas = ExtResource("2_wiawo")
 region = Rect2(0, 0, 73, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hplpq"]
-atlas = ExtResource("2_wiawo")
-region = Rect2(73, 0, 73, 76)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ot52h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sksps")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hplpq")
+"texture": SubResource("AtlasTexture_mvytb")
 }],
 "loop": true,
-"name": &"default",
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sksps")
+}],
+"loop": true,
+"name": &"jump",
 "speed": 5.0
 }]
 
@@ -38,6 +43,7 @@ script = ExtResource("1_mvytb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ot52h")
+animation = &"fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -2.5)

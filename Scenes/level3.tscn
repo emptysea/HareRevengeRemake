@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ow5l2r6hbcb5" path="res://Sprites/MyTiles.bmp" id="1_6o2xc"]
 [ext_resource type="PackedScene" uid="uid://dfccrismwjnn0" path="res://Scenes/turtle.tscn" id="2_petmu"]
 [ext_resource type="PackedScene" uid="uid://baa6l58h4fhvu" path="res://Scenes/start_world_border.tscn" id="3_d77hw"]
-[ext_resource type="PackedScene" uid="uid://br561j6050d2j" path="res://Scenes/rabbit.tscn" id="3_jaajx"]
+[ext_resource type="PackedScene" uid="uid://b4cbnp03m23aw" path="res://Scenes/rabbit.tscn" id="3_jaajx"]
 [ext_resource type="PackedScene" uid="uid://df2t7fs2mqkb1" path="res://Scenes/end_world_border.tscn" id="4_jaajx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_petmu"]
