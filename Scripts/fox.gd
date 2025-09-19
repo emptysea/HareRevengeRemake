@@ -37,7 +37,3 @@ func damage() -> void:
 		visible = false
 		collision_layer = 0
 		collision_mask = 0
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	print ("Hit by " + str(body.name))
-	pass # Replace with function body.
