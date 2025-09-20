@@ -12,7 +12,7 @@ def convert (target_color, data):
 	return data
 		
 # Load your image
-img = Image.open("Turtle2.png").convert("RGBA")
+img = Image.open("carrot.png").convert("RGBA")
 
 # Convert to NumPy array
 data = np.array(img)
@@ -37,6 +37,8 @@ target_colors = {
 	(0x0d, 0x08, 0x0e),
 	(0x0c, 0x0c, 0x0c),
 	(0x91, 0x53, 0x19),
+	(0x00, 0x00, 0x00),
+
 }
 
 for color in target_colors:
@@ -46,4 +48,4 @@ for color in target_colors:
 img_transparent = Image.fromarray(data)
 
 # Save the result
-img_transparent.save("turtle_hide.png")
+img_transparent.save("carrot_alpha.png")
