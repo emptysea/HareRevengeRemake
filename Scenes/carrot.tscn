@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxvomctj0uc7"]
+
+[ext_resource type="Script" uid="uid://drq0hypfnrbhr" path="res://Scenes/carrot.gd" id="1_4ucds"]
+[ext_resource type="Texture2D" uid="uid://cl8x8ei7bhaf" path="res://Sprites/carrot.png" id="1_fokpr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ucds"]
+size = Vector2(80, 20)
+
+[node name="Carrot" type="CharacterBody2D"]
+scale = Vector2(0.4, 0.4)
+collision_layer = 4
+script = ExtResource("1_4ucds")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fokpr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, -1)
+shape = SubResource("RectangleShape2D_4ucds")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

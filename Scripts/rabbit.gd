@@ -4,13 +4,15 @@ extends CharacterBody2D
 
 signal winner
 
-const SPEED = 500.0
+const SPEED = 1000.0
 const JUMP_VELOCITY = -530.0
 @onready var peak_of_jump = false
 @onready var moving = false
 @onready var facing_left = true
 @onready var starting_pos_x = 1056
 @onready var ending_pos_x = 93
+@onready var stillloading = true
+@onready var carrot = load("res://Scenes/carrot.tscn")
 
 
 func _physics_process(delta: float) -> void:
@@ -29,7 +31,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		#Make the rabbit jump.
 		peak_of_jump = false
-		throw_carrot()
+		if not stillloading:
+			throw_carrot()
+		stillloading = false
 		$AnimatedSprite2D.play("jump")
 		velocity.y = JUMP_VELOCITY
 
@@ -55,7 +59,20 @@ func _physics_process(delta: float) -> void:
 
 #Don't throw carrots while moving
 func throw_carrot():
-	pass
+	#Instantiate new carrot.  TODO: set spawn position.
+	var projectile = carrot.instantiate()
+	projectile.spawnPos = position
+
+	if facing_left:
+		projectile.spawnDir = 0
+		projectile.animationDir = false
+	else:
+		var yAdjust = Vector2(0,0)
+		projectile.spawnPos = global_position + yAdjust
+		projectile.spawnDir = deg_to_rad(180)
+		projectile.animationDir = true
+	get_tree().root.add_child(projectile)
+	#call_deferred("topoftree.add_child",projectile)
 
 func damage():
 	rabbit_health-=1

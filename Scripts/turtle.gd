@@ -75,3 +75,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		$Hurt.play()
 		print ("Just hit a " + str(body)) # Replace with function body.
 		emit_signal("took_damage",1)
+	elif is_hiding and body.name.begins_with("carrot"):
+		body.destroy()

@@ -6,7 +6,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#We need to check and see if we should swoop the bird.
 	var birdx = $Bird.position.x
 	var birdy = $Bird.position.y
@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 	if birdy > -105 and birdy < -99:
 		$Bird.change_pattern(0)
 	elif slope > .8 and slope < .9:
-		print ("Time to swoop!")
 		$Bird.change_pattern(1)
 
 func _on_bird_timer_timeout() -> void:
